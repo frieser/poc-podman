@@ -13,4 +13,4 @@ RUN env \n\
 ENTRYPOINT env ' >> /tmp/Dockerfile
 
 
-ENTRYPOINT podman build -t test /tmp
+ENTRYPOINT buildah bud -f /tmp/Dockerfile test
