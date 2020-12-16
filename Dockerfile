@@ -9,8 +9,8 @@ RUN apk add glibc-2.32-r0.apk
 
 RUN echo $' \n\
 FROM docker.io/alpine \n\
-RUN ls -R \n\
-ENTRYPOINT ls -R ' >> /tmp/Dockerfile
+RUN env \n\
+ENTRYPOINT env ' >> /tmp/Dockerfile
 
 
 ENTRYPOINT podman built -t test /tmp/Dockerfile
