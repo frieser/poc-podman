@@ -1,6 +1,6 @@
 FROM docker.io/buildah/buildah
 
-RUN apk add --no-cache wget bash openjdk11 maven --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+RUN apk add --no-cache wget bash openjdk11 fuse-overlayfs maven --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
 # https://github.com/sgerrand/alpine-pkg-glibc
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
