@@ -1,11 +1,6 @@
-FROM docker.io/buildah/buildah
+FROM fedora:latest
 
-RUN apk add --no-cache wget bash openjdk11 fuse-overlayfs maven --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-
-# https://github.com/sgerrand/alpine-pkg-glibc
-RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-2.32-r0.apk
-RUN apk add glibc-2.32-r0.apk
+RUN yum -y install buildah fuse-overlayfs --exclude container-selinux; rm -rf /var/cache /var/log/dnf* /var/log/yum.*
 
 RUN echo $' \n\
 FROM docker.io/alpine \n\
