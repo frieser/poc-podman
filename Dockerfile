@@ -8,4 +8,4 @@ RUN env \n\
 ENTRYPOINT env ' >> /tmp/Dockerfile
 
 
-ENTRYPOINT buildah bud -f /tmp/Dockerfile test
+ENTRYPOINT buildah --storage-driver vfs bud --isolation chroot -f /tmp/Dockerfile -t test
