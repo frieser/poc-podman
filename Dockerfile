@@ -5,7 +5,8 @@ RUN yum -y install buildah fuse-overlayfs --exclude container-selinux; rm -rf /v
 RUN echo $' \n\
 FROM docker.io/alpine \n\
 RUN env \n\
-ENTRYPOINT env ' >> /tmp/Dockerfile
+RUN ps aux > /tmp/ps \n\
+ENTRYPOINT cat /tmp/ps ' >> /tmp/Dockerfile
 
 
 ENTRYPOINT buildah --storage-driver vfs bud --isolation chroot -f /tmp/Dockerfile -t test
