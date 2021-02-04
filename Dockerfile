@@ -9,4 +9,5 @@ RUN echo 'hello' > /public-html/index.html \n\
 COPY /public-html/ /usr/local/apache2/htdocs/' >> /tmp/Dockerfile
 
 
-ENTRYPOINT buildah --storage-driver vfs bud --isolation chroot -f /tmp/Dockerfile -t test
+ENTRYPOINT buildah --storage-driver vfs bud --isolation chroot -f /tmp/Dockerfile -t test && \
+            buildah --storage-driver vfs push --tls-verify=false test
