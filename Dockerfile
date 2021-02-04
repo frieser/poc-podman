@@ -1,4 +1,4 @@
-FROM docker.io/centos:7
+FROM fedora:latest
 
 RUN yum -y install buildah fuse-overlayfs --exclude container-selinux; rm -rf /var/cache /var/log/dnf* /var/log/yum.*
 
