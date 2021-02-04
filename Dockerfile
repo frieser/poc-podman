@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM docker.io/centos:7
 
 RUN yum -y install buildah fuse-overlayfs --exclude container-selinux; rm -rf /var/cache /var/log/dnf* /var/log/yum.*
 
@@ -9,5 +9,8 @@ RUN echo 'hello' > /public-html/index.html \n\
 COPY /public-html/ /usr/local/apache2/htdocs/' >> /tmp/Dockerfile
 
 
-ENTRYPOINT buildah --storage-driver vfs bud --isolation chroot -f /tmp/Dockerfile -t test && \
-            buildah --storage-driver vfs push --tls-verify=false test
+ADD build.sh /usr/bin
+RUN chmod a+x /usr/bin/build.sh
+# /usr/bin/build.sh contains the actual custom build logic that will be run when
+# this custom builder image is run.
+ENTRYPOINT ["/usr/bin/build.sh"]
